@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "./redux";
 
 const TaskForm = (props) => {
   // const [text, setText] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const elements = form.elements;
     const formData = new FormData(form);
     const tache = formData.get("task");
-    props.addTask(tache);
+    dispatch(addTask(tache));
 
     form.reset();
-    // setText("");
   };
 
   return (
